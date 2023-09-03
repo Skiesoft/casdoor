@@ -1,0 +1,26 @@
+# fly.toml app configuration file generated for casdoor on 2023-09-02T19:59:32-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "casdoor"
+primary_region = "sjc"
+
+[build]
+
+[env]
+  runmode = "prod"
+  driverName = "postgres"
+  ldapServerPort = 10389
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[mounts]
+  source="casdoor_files"
+  destination="/files"
